@@ -1,0 +1,11 @@
+---
+- hosts: all
+  tasks:
+    - name: create a dir in /
+      file: path=/dir state=directory
+
+    - name: create some files inside the dir
+      copy: content="Hi hello" dest=/dir/file1 
+    
+    - name: create symlink for file1 in tmp
+      file: src=/dir/file1 dest=/tmp/file1 state=link
