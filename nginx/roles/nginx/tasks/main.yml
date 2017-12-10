@@ -1,0 +1,32 @@
+---
+# tasks file for galaxy
+ - name: Installing epel release
+   yum: name=epel-release state=latest
+ - name:  Installing nginx
+   yum: name=nginx state=latest
+   notify: 
+     - Start nginx
+ 
+ - name: Add H5BP Config
+   copy: src=h5bp dest=/etc/nginx/ owner=root group=root
+
+ - name: create a dir
+   file: path=/etc/nginx/sites-available state=directory
+
+ - name: create dir sites-enabled
+   file: path=/etc/nginx/sites-enabled/ state=directory
+
+ - name: enable firewall for http
+   firewalld: service=http permanent=true state=enabled
+
+ - name: enable firewall for https
+   firewalld: service=https permanent=true state=enabled
+   notify: 
+      - Reload nginx 
+
+ - name: Add SFH site config
+   template: src=example.com.j2 dest=/etc/nginx/sites-available/{{ domain }} owner=root group=root
+
+ - name: Enable SFH config
+   file: src=/etc/nginx/sites-available/{{ domain }} dest=/etc/nginx/sites-enabled/{{ domain }} state=link 
+
