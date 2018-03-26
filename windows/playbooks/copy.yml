@@ -1,0 +1,15 @@
+---
+- hosts: all
+  tasks:
+    - name: Copying copy_this file from host to remote
+      win_copy: 
+        src: copy_this 
+        dest: C:\Users\Buvanesh\Documents\
+        
+    - name: Copying copy_this file from one location to another location in the same remote machine
+      win_copy: 
+        src: C:\Users\Buvanesh\Documents\copy
+        dest: C:\Users\Buvanesh\Music\
+        remote_src: True
+
+

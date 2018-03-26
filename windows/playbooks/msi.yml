@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+    - name: Install an MSI file
+      win_package: 
+        path: C:\Users\Buvanesh\Documents\npp.msi
+       # state: absent
+

@@ -1,0 +1,22 @@
+---
+- hosts: all
+  tasks:
+    - name: create an empty text file called empty
+      win_file:
+        path: C:\Users\Buvanesh\Documents\empty
+        state: touch
+
+    - name: delete an existing file called copy_this
+      win_file: 
+        path: C:\Users\Buvanesh\Documents\copy_this
+        state: absent
+
+    - name: remove a directory called copy 
+      win_file:
+        path: C:\Users\Buvanesh\Documents\copy
+        state: absent 
+
+    - name: create a directory called new
+      win_file: 
+        path: C:\Users\Buvanesh\Documents\new
+        state: directory

@@ -1,0 +1,7 @@
+---
+- hosts: all
+  tasks: 
+   - name: Create content in file C:\Users\Buvanesh\Documents\copy_this
+     win_copy: 
+       dest: C:\Users\Buvanesh\Documents\copy_this
+       content: "Sample text" 
